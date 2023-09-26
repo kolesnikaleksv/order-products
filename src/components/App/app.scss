@@ -1,0 +1,10 @@
+.app {
+  text-align: center;
+
+  &__body {
+    padding-top: 72px;
+    display: flex;
+    height: 100vh;
+    flex-direction: row;
+  }
+}

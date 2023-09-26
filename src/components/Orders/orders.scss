@@ -1,0 +1,56 @@
+.orders {
+  width: 75%;
+  padding: 50px 0 50px 70px;
+
+  &__header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 50px;
+
+    &--button {
+      height: 40px;
+      width: 40px;
+      margin-right: 20px;
+      position: relative;
+      border-radius: 50%;
+      border: 2px solid #ececec;
+      background-color: #8BC34A;
+    }
+
+    &--button::after {
+      content: " ";
+      position: absolute;
+      display: block;
+      background-color: #fff;
+      height: 6px;
+      margin-top: -3px;
+      top: 50%;
+      left: 8px;
+      right: 8px;
+      z-index: 9;
+    }
+    &--button::before {
+      content: " ";
+      position: absolute;
+      display: block;
+      background-color: #fff;
+      width: 6px;
+      margin-left: -3px;
+      left: 50%;
+      top: 8px;
+      bottom: 8px;
+      z-index: 9;
+    }
+
+    &--button:active {
+      transform: translateY(1px);
+      box-shadow: 
+      -10px -10px 15px rgba(255, 255, 255, 0.5),
+      5px 5px 15px rgba(70, 70, 70, 0.12),
+      inset -5px -5px 15px rgba(255, 255, 255, 0.5),
+      inset 5px 5px 15px rgba(70, 70, 70, 0.12);
+    }
+  }
+}

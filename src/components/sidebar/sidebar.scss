@@ -61,15 +61,10 @@
         color: #000;
         text-decoration: none;
       }
-
       a.active {
-        color: red;
+        border-bottom: 2px solid #8BC34A;
+        transition: border-bottom 2s;
       }
     }
-
-		.active {
-			border-bottom: 2px solid #8BC34A;
-			transition: border-bottom 2s;
-		}
   }
 }

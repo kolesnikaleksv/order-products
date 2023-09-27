@@ -12,9 +12,7 @@ import {
   Route,
 } from 'react-router-dom';
 
-
 import './app.scss';
-
 
 function App() {
   return (

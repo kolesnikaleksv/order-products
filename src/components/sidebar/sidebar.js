@@ -1,10 +1,9 @@
 import user from '../../images/user.jpg';
 import settings from '../../images/cog.png';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './sidebar.scss';
 
 const Sidebar = () => {
-
   return (
     <div className='sidebar'>
       <div className='sidebar__image'>
@@ -13,25 +12,9 @@ const Sidebar = () => {
           <img src={settings} alt='settings' />
         </div>
       </div>
-      <div>
         <ul className='sidebar__nav'>
-          {/* <li className='sidebar__nav--item'>
-            <Link to='orders'>orders</Link>
-          </li>
-          <li className='sidebar__nav--item active'>
-            <Link to='groups' >groups</Link>
-          </li>
           <li className='sidebar__nav--item'>
-            <Link to='product'>product</Link>
-          </li>
-          <li className='sidebar__nav--item'>
-            <Link to='users'>users</Link>
-          </li>
-          <li className='sidebar__nav--item'>
-            <Link to='sets'>sets</Link>
-          </li> */}
-          <li className='sidebar__nav--item'>
-            <NavLink to='orders'>orders</NavLink>
+            <NavLink to='/'>orders</NavLink>
           </li>
           <li className='sidebar__nav--item'>
             <NavLink to='groups' >groups</NavLink>
@@ -46,7 +29,6 @@ const Sidebar = () => {
             <NavLink to='sets'>sets</NavLink>
           </li>
         </ul>
-      </div>
     </div>
   );
 };

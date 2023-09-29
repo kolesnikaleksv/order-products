@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react';
 import logo from '../../images/logo.png';
 import clock from '../../images/clock.png';
+import socketIO from 'socket.io-client';
 
 import './topMenu.scss';
 
+const socket = socketIO.connect('http://localhost:4000');
 
 const TopMenu = () => {
-
   const [currentDate, setCurrentDate] = useState('');
+  const [activeUser, setActiveUser] = useState(1);
 
   useEffect(() => {
     setCurrentDate(getDate());
-  },[])
+    socket.on('newUserResponse', (data) => setActiveUser(data));
+    socket.on('newUser', (data) => setActiveUser(data));
+  },[activeUser])
 
   function getDate() {
     const today = new Date();
@@ -40,6 +44,10 @@ const TopMenu = () => {
               />
           </div>
           <div className='header__tools'>
+            <div className='header__counter'>
+              <span>Active</span>
+              <span>users: {activeUser}</span>
+            </div>
             <div className='header__date'>
               <span>Today</span>
               <span>{currentDate}</span>

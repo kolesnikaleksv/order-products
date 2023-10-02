@@ -10,11 +10,18 @@ const socket = socketIO.connect('http://localhost:4000');
 const TopMenu = () => {
   const [currentDate, setCurrentDate] = useState('');
   const [activeUser, setActiveUser] = useState(1);
-
+  const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+  
   useEffect(() => {
     setCurrentDate(getDate());
     socket.on('newUserResponse', (data) => setActiveUser(data));
     socket.on('newUser', (data) => setActiveUser(data));
+    const intervalId = setInterval(() => {
+      setCurrentTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+    }, 60000);
+    
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
   },[activeUser])
 
   function getDate() {
@@ -22,16 +29,15 @@ const TopMenu = () => {
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let monthIndex = today.getMonth() + 1;
     let month = monthNames[monthIndex].slice(0, 3).toUpperCase();
-    const year = today.getFullYear();
-    const date = today.getDate();
+    let year = today.getFullYear();
+    let date = today.getDate();
     
     return `${date} ${month}, ${year}`;
   }
 
   return (
     <div className='header bg-light'>
-        <div className='header__container container-md'>
-          
+        <div className='header__container container-md'>       
           <div className='header__image'>
             <img src={logo} alt='logo' />
           </div>
@@ -54,7 +60,7 @@ const TopMenu = () => {
             </div>
             <div className='header__timer'>
               <img src={clock} alt='clock'/>
-              <span>17:23</span>
+              <span>{currentTime}</span>
             </div>
           </div>
         </div>

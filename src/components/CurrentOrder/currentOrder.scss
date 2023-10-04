@@ -1,0 +1,27 @@
+.current-order {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #D1DADD;
+  border-radius: 4px;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.37);
+  margin-left: 20px;
+
+  &__head {
+    padding: 20px;
+    text-align: left;
+
+    &--title {
+      margin-bottom: 20px;
+      
+    }
+
+    &--add-block {
+      display: flex;
+      align-items: center;
+
+      span {
+        color: #8BC34A;
+      }
+    }
+  }
+}

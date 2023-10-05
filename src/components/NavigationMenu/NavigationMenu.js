@@ -6,7 +6,7 @@ import Product from '../Product/Product';
 import Users from '../Users/Users';
 import Settings from '../Settings/Settings';
 
-const Routing = () => {
+const NavigationMenu = () => {
   const location = useLocation();
   const [displayLocation, setDisplayLocation] = useState(location);
 
@@ -36,4 +36,4 @@ const Routing = () => {
   )
 }
 
-export default Routing;
+export default NavigationMenu;

@@ -3,13 +3,12 @@
 
   &__body {
     padding-top: 72px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 180px 1fr;
     height: 100vh;
-    flex-direction: row;
   }
 
   &__pages {
-    width: 85%;
     padding: 50px 70px;
   }
 }

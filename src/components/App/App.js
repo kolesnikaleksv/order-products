@@ -1,6 +1,6 @@
 import TopMenu from '../TopMenu/TopMenu';
 import Sidebar from '../sidebar/sidebar';
-import Routing from '../Routing/Routing';
+import NavigationMenu from '../NavigationMenu/NavigationMenu';
 
 import './app.scss';
 
@@ -11,7 +11,7 @@ function App() {
         <TopMenu />
         <div className='app__body'>
           <Sidebar/>
-          <Routing />
+          <NavigationMenu />
         </div>
       </div>
   );

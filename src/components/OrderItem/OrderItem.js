@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './orderItem.scss';
+import getDate from '../sevices/getDate';
 
 const OrderItem = (props) => {
   const [fullDate, setFullDate] = useState('without date');
@@ -8,18 +9,9 @@ const OrderItem = (props) => {
   const {title, date, count, price} = props;
  
   useEffect(() => {
-    getFullDate(date);
-  },[]);
-
-  const getFullDate = (date) => {
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const dateArr = date.split('-');
-    const month = monthNames[+dateArr[1] - 1].slice(0, 3).split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-    const fullDate = `${dateArr[2]} / ${month} / ${dateArr[0]}`;
-    const shortDate = `${dateArr[1]} / ${dateArr[0].slice(2)}`;
-    setShortDate(shortDate);
-    setFullDate(fullDate);
-  }
+    setShortDate(getDate(date, 'shortDate'));
+    setFullDate(getDate(date, 'fullDate'));
+  },[date]);
 
     return (
       // <div className='item half-screen'>
@@ -33,16 +25,16 @@ const OrderItem = (props) => {
           </span>
         </div>
         <div className='item__count'>
-          <span className='item__count--count'>{count}</span>
-          <span className='item__count--description'>Products</span>
+          <span className='item__count item__count--count'>{count}</span>
+          <span className='item__count item__count--description'>Products</span>
         </div>
         <div className='item__date'>
-          <span className='item__date--short'>{shortDate}</span>
-          <span className='item__date--full'>{fullDate}</span>
+          <span className='item__date item__date--short'>{shortDate}</span>
+          <span className='item__date item__date--full'>{fullDate}</span>
         </div>
         <div className='item__price'>
-          <span className='item__price--usd'>{price} usd</span>
-          <span className='item__price--uah'>2500.50 uah</span>
+          <span className='item__price item__price--usd'>{price} usd</span>
+          <span className='item__price item__price--uah'>2500.50 uah</span>
         </div>
         <div className='item__delete'>
           <span className="material-symbols-outlined">

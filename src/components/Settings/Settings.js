@@ -1,6 +1,8 @@
 const Settings = () => {
   return (
-    <h1>Setting page</h1>
+    <div data-testid="sets-page">
+      <h1>Setting page</h1>
+    </div>
   )
 }
 

@@ -12,7 +12,7 @@ const Orders = () => {
   ]);
 
   return (
-    <div className='orders'>
+    <div className='orders' data-testid="main-page">
       <div className='orders__header'>
         <AddButton />
         <h1>Orders / 25</h1>

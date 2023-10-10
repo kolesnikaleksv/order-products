@@ -1,6 +1,8 @@
 const Users = () => {
   return (
-    <h1>Users page</h1>
+    <div data-testid='users-page'>
+      <h1>Users page</h1>
+    </div>
   )
 }
 

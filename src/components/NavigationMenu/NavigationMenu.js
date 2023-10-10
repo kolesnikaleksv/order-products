@@ -5,6 +5,7 @@ import Groups from '../Groups/Groups';
 import Product from '../Product/Product';
 import Users from '../Users/Users';
 import Settings from '../Settings/Settings';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 const NavigationMenu = () => {
   const location = useLocation();
@@ -31,6 +32,7 @@ const NavigationMenu = () => {
         <Route path='/product' element={<Product/>} />
         <Route path='/users' element={<Users/>} />
         <Route path='/sets' element={<Settings/>} />
+        <Route path='/*' element={<ErrorPage/>} />
       </Routes>
     </div>
   )

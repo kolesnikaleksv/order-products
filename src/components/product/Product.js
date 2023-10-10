@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import './product.scss';
 import ProductList from '../ProductLIst/ProductList';
+
+import './product.scss';
 
 const Product = () => {
   const [dataProduct] = useState([
@@ -15,8 +16,8 @@ const Product = () => {
         specification: 'Specification 1',
         owner: 'Oleksandr Kolisnyk',
         guarantee: {
-          start: '2017-06-29 12:09:33',
-          end: '2017-06-29 12:09:33'
+          start: '2017-06-28 12:09:33',
+          end: '2017-06-28 12:09:33'
         },
         price: [
           {value: 100, symbol: 'USD', isDefault: 0},
@@ -36,8 +37,8 @@ const Product = () => {
         type: 'Monitors Monitors Monitors Monitors Monitors',
         specification: 'Specification 1',
         guarantee: {
-          start: '2017-06-29 12:09:33',
-          end: '2017-06-29 12:09:33'
+          start: '2017-06-27 12:09:33',
+          end: '2017-06-27 12:09:33'
         },
         price: [
           {value: 100, symbol: 'USD', isDefault: 0},
@@ -70,7 +71,7 @@ const Product = () => {
     ]
   )
   return (
-    <div className='product'>
+    <div className='product' data-testid="product-page">
       <div className='product__header'>
         <h1>Products / 25</h1>
         <form action="#">

@@ -14,19 +14,19 @@ const Sidebar = () => {
       </div>
         <ul className='sidebar__nav'>
           <li className='sidebar__nav--item'>
-            <NavLink to='/'>orders</NavLink>
+            <NavLink to='/' data-testid="main-link">orders</NavLink>
           </li>
           <li className='sidebar__nav--item'>
-            <NavLink to='groups' >groups</NavLink>
+            <NavLink to='groups' data-testid='groups-link'>groups</NavLink>
           </li>
           <li className='sidebar__nav--item'>
-            <NavLink to='product'>product</NavLink>
+            <NavLink to='product' data-testid="product-link">product</NavLink>
           </li>
           <li className='sidebar__nav--item'>
-            <NavLink to='users'>users</NavLink>
+            <NavLink to='users' data-testid='users-link'>users</NavLink>
           </li>
            <li className='sidebar__nav--item'>
-            <NavLink to='sets'>sets</NavLink>
+            <NavLink to='sets' data-testid="sets-link">sets</NavLink>
           </li>
         </ul>
     </div>

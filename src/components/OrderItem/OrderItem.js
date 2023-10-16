@@ -6,7 +6,7 @@ const OrderItem = (props) => {
   const [fullDate, setFullDate] = useState('without date');
   const [shortDate, setShortDate] = useState('no date');
   
-  const {title, date, count, price} = props;
+  const {title, date, count, price, onOpen, className} = props;
  
   useEffect(() => {
     setShortDate(getDate(date, 'shortDate'));
@@ -14,12 +14,11 @@ const OrderItem = (props) => {
   },[date]);
 
     return (
-      // <div className='item half-screen'>
-      <div className='item'>
+      <div className={`item ${className}`}>
         <div className='item__title'>
           {title}
         </div>
-        <div className='item__menu'>
+        <div className='item__menu' onClick={() => onOpen(props)}>
           <span className="material-symbols-outlined">
             list
           </span>

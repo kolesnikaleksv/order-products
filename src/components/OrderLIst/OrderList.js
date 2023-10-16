@@ -1,13 +1,16 @@
 import OrderItem from "../OrderItem/OrderItem";
 
-const OrderList = ({data}) => {
+const OrderList = (props) => {
 
+  const {data, className, onOpen} = props;
   const item = data.map(item => {
     const {id, ...itemProps} = item;
     return (
       <OrderItem 
         key={id}
-        {...itemProps}
+        {...item}
+        onOpen={onOpen}
+        className={className}
       />
     )
   });

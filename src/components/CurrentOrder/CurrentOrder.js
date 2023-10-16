@@ -1,8 +1,9 @@
+import CloseButton from '../CloseButton/CloseButton';
 import AddButton from '../AddButton/AddButton';
 
 import './currentOrder.scss';
 
-const CureentOrder = () => {
+const CureentOrder = ({onClose}) => {
   return (
     <div className="current-order">
       <div className="current-order__head">
@@ -17,6 +18,7 @@ const CureentOrder = () => {
       <div className="current-order__body">
 
       </div>
+      <CloseButton onClose={onClose}/>
     </div>
   )
 }

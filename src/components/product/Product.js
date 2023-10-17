@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProductList from '../ProductLIst/ProductList';
 
 import './product.scss';
 
 const Product = () => {
+  const [typeOfProduct, setTypeOfProduct] = useState(null);
+  const [renderingData, setRenderingData] = useState([]);
   const [dataProduct] = useState([
     {
         id: 1,
@@ -34,7 +36,7 @@ const Product = () => {
         owner: 'Lubov Manakova',
         photo: 'https://clideo.com/assets/images/meme-templates/meme-demo-template-7-lg.png',
         title: 'Product 1',
-        type: 'Monitors Monitors Monitors Monitors Monitors',
+        type: 'JavaScript asdfasd asdf',
         specification: 'Specification 1',
         guarantee: {
           start: '2017-06-27 12:09:33',
@@ -65,23 +67,32 @@ const Product = () => {
           {value: 100, symbol: 'USD', isDefault: 0},
           {value: 2600, symbol: 'UAH', isDefault: 1}
         ],
-        order: 3,
+        order: 1,
         date: '2017-09-25 12:09:33'
       }
     ]
   )
+
+  useEffect(() => {
+    setRenderingData(dataProduct.filter(item => item.type === typeOfProduct ? item : null))
+  },[typeOfProduct]);
+
+  const handleTypeOfProduct = (e) => {
+    setTypeOfProduct(e.target.value !== 'select' ? e.target.value : null)
+  }
+ 
   return (
     <div className='product' data-testid="product-page">
       <div className='product__header'>
         <h1>Products / 25</h1>
         <form action="#">
           <label htmlFor="type">Type of products:</label>
-          <select name="types" id="type">
+          <select name="types" id="type" onChange={handleTypeOfProduct}>
             <option value="select">Select a type of products</option>
-            <option value="javascript">JavaScript asdfasd asdf</option>
+            <option value="JavaScript asdfasd asdf">JavaScript asdfasd asdf</option>
             <option value="php">PHP</option>
             <option value="java">Java</option>
-            <option value="golang">Golang</option>
+            <option value="Monitors">Monitors</option>
             <option value="python">Python</option>
             <option value="c#">C#</option>
             <option value="C++">C++</option>
@@ -90,10 +101,7 @@ const Product = () => {
         </form>
 			</div>
       <div className='product__body'>
-        {/* <ul className='product__list'>
-          <ProductItem data={dataProduct} />
-        </ul> */}
-        <ProductList data={dataProduct} />
+        <ProductList data={typeOfProduct ? renderingData : dataProduct} />
 			</div>
     </div>
   )

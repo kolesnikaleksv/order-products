@@ -7,6 +7,7 @@ import OrderList from '../OrderLIst/OrderList';
 const Orders = () => {
   const [selectedOrder ,setSelectedOrder] = useState(null);
   const [className, setClassName] = useState('');
+  const [activeOrder, setActiveOrder] = useState('');
   const [data] = useState( [
     { id: 1, title: 'Really long title for order Really long title for order', date: '2011-07-29', price: 1400, count: 15, description: 'desc' },
     { id: 2, title: 'Order 1', date: '2017-06-29', price: 20, count: 10, description: 'desc' },
@@ -16,11 +17,13 @@ const Orders = () => {
   const handleOpenOrder = (order) => {
     setSelectedOrder(order);
     setClassName('half-screen');
+    data.forEach(elem => elem.id === order.id ? setActiveOrder(elem.active = true): setActiveOrder(elem.active = false))
   };
 
   const handleCloseOrder = () => {
     setSelectedOrder(null);
     setClassName('');
+    data.forEach(elem => setActiveOrder(elem.active = false))
   };
   
   return (
@@ -34,7 +37,7 @@ const Orders = () => {
         {
           className ?
             <div className='orders__body--products'>
-              <CureentOrder data={data} onClose={handleCloseOrder} />
+              <CureentOrder order={selectedOrder} onClose={handleCloseOrder} />
             </div>
             : null
         }

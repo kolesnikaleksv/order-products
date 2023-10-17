@@ -1,6 +1,11 @@
 import ProductItem from "../ProductItem/ProductItem";
 
 const ProductList = ({data}) => {
+  if(!data.length) {
+    return(
+      <div>There are no products of the selected type</div> 
+    )
+  }
   
   const item = data.map(item => {
     const {id, ...dataProduct} = item;

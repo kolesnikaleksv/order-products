@@ -47,6 +47,12 @@
       font-size: 30px;
     }
   }
+  
+  &__menu:hover {
+    border: 2px solid #D1DADD;
+    transition: box-shadow 0.2s ease-out;
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.37);
+  }
 
   &__count {
 
@@ -95,11 +101,9 @@
   }
 
   &.half-screen {
-    // width: 35%;
     padding-right: 70px;
 
     .item__arrow {
-      // display: block;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -111,6 +115,10 @@
       display: none;
     }
   }
+  
+  &.active {
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.37);
+  }  
 }
 
 .material-symbols-outlined {

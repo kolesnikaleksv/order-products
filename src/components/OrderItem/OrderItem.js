@@ -6,7 +6,7 @@ const OrderItem = (props) => {
   const [fullDate, setFullDate] = useState('without date');
   const [shortDate, setShortDate] = useState('no date');
   
-  const {title, date, count, price, onOpen, className} = props;
+  const {title, date, count, price, onOpen, className, active} = props;
  
   useEffect(() => {
     setShortDate(getDate(date, 'shortDate'));
@@ -14,7 +14,7 @@ const OrderItem = (props) => {
   },[date]);
 
     return (
-      <div className={`item ${className}`}>
+      <div className={`item ${className} ${active ? 'active': null}`}>
         <div className='item__title'>
           {title}
         </div>

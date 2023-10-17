@@ -2,7 +2,7 @@ import OrderItem from "../OrderItem/OrderItem";
 
 const OrderList = (props) => {
 
-  const {data, className, onOpen} = props;
+  const {data, className, onOpen, onDelete} = props;
   const item = data.map(item => {
     const {id, ...itemProps} = item;
     return (
@@ -11,12 +11,13 @@ const OrderList = (props) => {
         {...item}
         onOpen={onOpen}
         className={className}
+        onDelete={onDelete}
       />
     )
   });
 
   return (
-    <div className='orders__body--items'>
+    <div className='orders__body--items' style={className ? {width: '30%'}: {width: '100%'}}>
       {item}
     </div>
   )

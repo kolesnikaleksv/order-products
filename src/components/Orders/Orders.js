@@ -13,6 +13,8 @@ const Orders = () => {
     { id: 2, title: 'Order 1', date: '2017-06-29', price: 20, count: 10, description: 'desc' },
     { id: 3, title: 'Really long title for order Really long title for orderReally long title for order Really long title for order', date: '2017-12-29', price: 100, count: 25, description: 'desc' },
   ]);
+  
+  const [orderList, setOrderList] = useState(data);
 
   const handleOpenOrder = (order) => {
     setSelectedOrder(order);
@@ -25,6 +27,10 @@ const Orders = () => {
     setClassName('');
     data.forEach(elem => setActiveOrder(elem.active = false))
   };
+
+  const deleteOrder = (id) => {
+    setOrderList(data.filter(elem => elem.id !== id))
+  }
   
   return (
     <div className='orders' data-testid="main-page">
@@ -33,7 +39,7 @@ const Orders = () => {
         <h1>Orders / 25</h1>
 			</div>
       <div className='orders__body'>
-        <OrderList onOpen={handleOpenOrder} className={className} data={data}/>
+        <OrderList onDelete={deleteOrder} onOpen={handleOpenOrder} className={className} data={orderList}/>
         {
           className ?
             <div className='orders__body--products'>

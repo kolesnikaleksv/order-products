@@ -17,7 +17,7 @@ const OrderList = (props) => {
   });
 
   return (
-    <div className='orders__body--items' style={className ? {width: '30%'}: {width: '100%'}}>
+    <div className='orders__body--items' style={className ? {width: '36%'}: {width: '100%'}}>
       {item}
     </div>
   )

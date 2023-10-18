@@ -1,37 +1,40 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddButton from '../AddButton/AddButton';
 import CureentOrder from '../CurrentOrder/CurrentOrder';
-import './orders.scss';
 import OrderList from '../OrderLIst/OrderList';
+import ServiceApi from '../sevices/serviceApi';
+
+import './orders.scss';
 
 const Orders = () => {
   const [selectedOrder ,setSelectedOrder] = useState(null);
   const [className, setClassName] = useState('');
   const [activeOrder, setActiveOrder] = useState('');
-  const [data] = useState( [
-    { id: 1, title: 'Really long title for order Really long title for order', date: '2011-07-29', price: 1400, count: 15, description: 'desc' },
-    { id: 2, title: 'Order 1', date: '2017-06-29', price: 20, count: 10, description: 'desc' },
-    { id: 3, title: 'Really long title for order Really long title for orderReally long title for order Really long title for order', date: '2017-12-29', price: 100, count: 25, description: 'desc' },
-  ]);
+  const [orderList, setOrderList] = useState([]);
+
+  const ordersData = ServiceApi('http://localhost:4000/orders');
   
-  const [orderList, setOrderList] = useState(data);
+  useEffect(() => {
+    setOrderList(ordersData)
+  }, [ordersData])
 
   const handleOpenOrder = (order) => {
+    setOrderList(ordersData)
     setSelectedOrder(order);
     setClassName('half-screen');
-    data.forEach(elem => elem.id === order.id ? setActiveOrder(elem.active = true): setActiveOrder(elem.active = false))
+    ordersData.forEach(elem => elem.id === order.id ? setActiveOrder(elem.active = true): setActiveOrder(elem.active = false))
   };
 
   const handleCloseOrder = () => {
     setSelectedOrder(null);
     setClassName('');
-    data.forEach(elem => setActiveOrder(elem.active = false))
+    ordersData.forEach(elem => setActiveOrder(elem.active = false)) 
   };
 
   const deleteOrder = (id) => {
-    setOrderList(data.filter(elem => elem.id !== id))
+    setOrderList(ordersData.filter(elem => elem.id !== id))
   }
-  
+
   return (
     <div className='orders' data-testid="main-page">
       <div className='orders__header'>

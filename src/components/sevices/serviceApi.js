@@ -8,7 +8,7 @@ const ServiceApi = (path) => {
     axios.get(path) 
       .then((data) => setData(data.data))
       .catch((error) => console.error('Error:', error))
-  }, []);
+  }, [path]);
   
   return data;
 }

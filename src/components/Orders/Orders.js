@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import AddButton from '../AddButton/AddButton';
 import CureentOrder from '../CurrentOrder/CurrentOrder';
 import OrderList from '../OrderLIst/OrderList';
-import ServiceApi from '../sevices/serviceApi';
+import useDataService from '../sevices/DataService';
 
 import './orders.scss';
 
@@ -11,12 +11,28 @@ const Orders = () => {
   const [className, setClassName] = useState('');
   const [activeOrder, setActiveOrder] = useState('');
   const [orderList, setOrderList] = useState([]);
+  const [orderChanged, setOrderChanged] = useState(false);
+  const [ordersData, setOrdersData] = useState([]);
 
-  const ordersData = ServiceApi('http://localhost:4000/orders');
+  const {fetchData, deleteData} = useDataService();
+
+  const getData = () => {
+    fetchData('http://localhost:4000/orders')
+      .then(data => {
+        setOrdersData(data)
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
   
   useEffect(() => {
-    setOrderList(ordersData)
-  }, [ordersData])
+    getData();
+  },[orderChanged]);
+  
+  useEffect(() => {
+    setOrderList(ordersData);
+  }, [ordersData]);
 
   const handleOpenOrder = (order) => {
     setOrderList(ordersData)
@@ -32,7 +48,8 @@ const Orders = () => {
   };
 
   const deleteOrder = (id) => {
-    setOrderList(ordersData.filter(elem => elem.id !== id))
+    deleteData(id);
+    setOrderChanged(!orderChanged);
   }
 
   return (

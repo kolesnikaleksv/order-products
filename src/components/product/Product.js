@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import ProductList from '../ProductLIst/ProductList';
-import ServiceApi from '../sevices/serviceApi';
+import useDataService from '../sevices/DataService';
+
 import './product.scss';
 
 const Product = () => {
@@ -8,12 +9,25 @@ const Product = () => {
   const [renderingData, setRenderingData] = useState([]);
   const [dataProduct, setDataProduct] = useState([]);
 
-  const productList = ServiceApi('http://localhost:4000/products');
+  const {fetchData} = useDataService();
+
+  const getData = () => {
+    fetchData('http://localhost:4000/products')
+      .then(data => {
+        setDataProduct(data)
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+  
+  useEffect(() => {
+    getData();
+  },[]);
 
   useEffect(() => {
-    setDataProduct(productList)
       setRenderingData(dataProduct.filter(item => item.type === typeOfProduct ? item : null))
-  }, [productList, typeOfProduct]);
+  }, [ dataProduct ,typeOfProduct ]);
  
   const handleTypeOfProduct = (e) => {
     setTypeOfProduct(e.target.value !== 'select' ? e.target.value : null)

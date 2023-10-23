@@ -16,7 +16,8 @@ const Orders = () => {
 
   const {fetchData, deleteData} = useDataService();
 
-  const getData = () => {
+  
+  useEffect(() => {
     fetchData('http://localhost:4000/orders')
       .then(data => {
         setOrdersData(data)
@@ -24,10 +25,6 @@ const Orders = () => {
       .catch(error => {
         console.error('Error:', error);
       });
-  }
-  
-  useEffect(() => {
-    getData();
   },[orderChanged]);
   
   useEffect(() => {

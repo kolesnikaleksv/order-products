@@ -12,7 +12,7 @@ const Product = () => {
   const {fetchData} = useDataService();
 
   const getData = () => {
-    fetchData('http://localhost:4000/products')
+    fetchData('http://localhost:5000/products')
       .then(data => {
         setDataProduct(data)
       })

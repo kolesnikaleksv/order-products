@@ -19,7 +19,7 @@ const Orders = () => {
   const {fetchData, deleteData} = useDataService();
 
   useEffect(() => {
-    fetchData('http://localhost:4000/orders')
+    fetchData('http://localhost:5000/orders')
       .then(data => {
         setOrdersData(data)
       })

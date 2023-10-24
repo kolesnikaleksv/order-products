@@ -16,7 +16,7 @@ const useDataService = () => {
   }
 
   const deleteData = (id) => {
-     axios.delete(`http://localhost:4000/orders/${id}`) 
+     axios.delete(`http://localhost:5000/orders/${id}`) 
     .then((response) => {
       if (response.status === 200) {
         console.log('Element deleted successfully.');
@@ -27,9 +27,23 @@ const useDataService = () => {
     });
   }
 
+  const fetchDataById = async (path, id) => {console.log('hello', id)
+    try {
+      const response = await axios.get(`${path}/${id}`);
+      if (response.status === 200) {
+        return response.data;
+      } else {
+        throw new Error('Failed to fetch data');
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
   return {
     fetchData,
-    deleteData
+    deleteData,
+    fetchDataById
   }
 }
 

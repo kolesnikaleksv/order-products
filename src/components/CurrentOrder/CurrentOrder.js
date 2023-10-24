@@ -15,7 +15,7 @@ const CureentOrder = ({order ,onClose}) => {
   const { id} = order;
 
   const getData = () => {
-    fetchData('http://localhost:4000/products')
+    fetchData('http://localhost:5000/products')
       .then(data => {
         setDataProducts(data.filter(item => item.order === id))
       })

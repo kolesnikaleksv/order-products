@@ -3,6 +3,7 @@ import AddButton from '../AddButton/AddButton';
 import CureentOrder from '../CurrentOrder/CurrentOrder';
 import OrderList from '../OrderLIst/OrderList';
 import useDataService from '../sevices/DataService';
+import Popup from '../Popup/Popup';
 
 import './orders.scss';
 
@@ -13,10 +14,10 @@ const Orders = () => {
   const [orderList, setOrderList] = useState([]);
   const [orderChanged, setOrderChanged] = useState(false);
   const [ordersData, setOrdersData] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   const {fetchData, deleteData} = useDataService();
 
-  
   useEffect(() => {
     fetchData('http://localhost:4000/orders')
       .then(data => {
@@ -44,9 +45,19 @@ const Orders = () => {
     ordersData.forEach(elem => setActiveOrder(elem.active = false)) 
   };
 
+  const handleClosePopup = () => {
+    setIsOpen(false);
+  }
+
   const deleteOrder = (id) => {
     deleteData(id);
     setOrderChanged(!orderChanged);
+    setIsOpen(false);
+  }
+
+  const handleOpenPopup = (order) => {
+    setSelectedOrder(order);
+    setIsOpen(true);
   }
 
   return (
@@ -56,7 +67,7 @@ const Orders = () => {
         <h1>Orders / 25</h1>
 			</div>
       <div className='orders__body'>
-        <OrderList onDelete={deleteOrder} onOpen={handleOpenOrder} className={className} data={orderList}/>
+        <OrderList onPopup={handleOpenPopup} onOpen={handleOpenOrder} className={className} data={orderList}/>
         {
           className ?
             <div className='orders__body--products'>
@@ -65,6 +76,11 @@ const Orders = () => {
             : null
         }
 			</div>
+      {
+        isOpen ?
+        <Popup onDelete={deleteOrder} order={selectedOrder} onClose={handleClosePopup} />
+        : null
+      }
     </div>
   );
 };

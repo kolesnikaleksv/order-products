@@ -5,8 +5,8 @@ import getDate from '../sevices/getDate';
 const OrderItem = (props) => {
   const [fullDate, setFullDate] = useState('without date');
   const [shortDate, setShortDate] = useState('no date');
-  
-  const {title, date, count, onOpen, className, active, onDelete, sumUsd, sumUah} = props;
+
+  const {title, date, count, onOpen, className, active, sumUsd, sumUah, onPopup} = props;
 
   useEffect(() => {
     setShortDate(getDate(date, 'shortDate'));
@@ -35,7 +35,7 @@ const OrderItem = (props) => {
            <span className='item__price item__price--usd'>{sumUsd} usd</span>
           <span className='item__price item__price--uah'>{sumUah} uah</span>
         </div>
-        <div className='item__delete' onClick={() => onDelete(props.id)}>
+        <div className='item__delete' onClick={() => onPopup(props)}>
           <span className="material-symbols-outlined">
             delete
           </span>

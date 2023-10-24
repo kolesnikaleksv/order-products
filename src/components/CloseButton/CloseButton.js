@@ -7,7 +7,7 @@ const CloseButton = ({onClose}) => {
           <span className="close-button__circle close-button__circle--line-1"></span>
           <span className="close-button__circle close-button__circle--line-2"></span>
         </div>
-      </div>
+    </div>
   )
 }
 

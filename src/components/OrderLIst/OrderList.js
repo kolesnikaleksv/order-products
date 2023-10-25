@@ -23,18 +23,20 @@ const OrderList = (props) => {
   const {data, className, onOpen, onPopup} = props;
 
   const item = data.map(item => {
-    const list = products.filter(item => item.order === item.id);
+    const {id} = item;
+    const list = products.filter(item => item.order === id);
     const usd = list.map(item => item.price[0].value).reduce((a, b) => a + b, 0);
     const uah = list.map(item => item.price[1].value).reduce((a, b) => a + b, 0);
     
     return (
       <OrderItem 
-        key={item.id}
+        key={id}
         {...item}
         onOpen={onOpen}
         className={className}
         sumUah={uah}
         sumUsd={usd}
+        count={list.length}
         onPopup={onPopup}
       />
     )

@@ -1,14 +1,11 @@
 .app {
-  text-align: center;
+  @apply text-center;
 
   &__body {
-    padding-top: 72px;
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    height: 100vh;
+    @apply pt-16 grid grid-cols-[180px_1fr] h-screen;
   }
 
   &__pages {
-    padding: 50px 70px;
+    @apply px-16 py-12;
   }
 }

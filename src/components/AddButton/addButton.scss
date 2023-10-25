@@ -1,62 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .add-button {
-  margin-right: 20px;
-  position: relative;
-  border-radius: 50%;
-  border: 2px solid #ececec;
-  background-color: #8BC34A;
+  @apply mr-5 relative rounded-full border-solid border-zinc-100 bg-green 
+  before:absolute  before:block before:bg-white before:left-1/2 before:top-2 before:bottom-2
+  after:absolute after:block after:bg-white after:top-1/2 after:left-2 after:right-2;
 
   &--normal {
-    height: 40px;
-    width: 40px;
+    @apply h-10 w-10
+    before:w-1.5 before:left-[calc(50%-3px)]
+    after:h-1.5 after:top-[calc(50%-3px)];
   }
 
   &--small {
-    height: 30px;
-    width: 30px;
-  }
-
-  &::before {
-    content: " ";
-    position: absolute;
-    display: block;
-    background-color: #fff;
-    left: 50%;
-    top: 8px;
-    bottom: 8px;
-    z-index: 9;
-  }
-
-  &--normal::before {
-    width: 6px;
-    margin-left: -3px;
-
-  }
-
-  &--small::before {
-    width: 2px;
-    margin-left: -1px;
-  }
-
-  &::after {
-    content: " ";
-    position: absolute;
-    display: block;
-    background-color: #fff;
-    top: 50%;
-    left: 8px;
-    right: 8px;
-    z-index: 9;
-  }
-
-  &--normal::after {
-    height: 6px;
-    margin-top: -3px;
-
-  }
-
-  &--small::after {
-    height: 2px;
-    margin-top: -1px;
+    @apply h-8 w-8 
+    before:w-0.5 before:left-[calc(50%-1px)] 
+    after:h-0.5 after:top-[calc(50%-1px)];
   }
 
   &:active {

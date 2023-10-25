@@ -5,7 +5,6 @@ import './addButton.scss';
 const AddButton = ({size}) => {
   return (
     <button
-      type="button"
       className={['add-button', `add-button--${size}`].join(' ')}>
     </button>
   )

@@ -1,91 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @apply flex justify-center items-center fixed top-0 left-0 w-full h-full bg-dark-gray;
 
   &__container {
-    background-color: white;
-    position: relative;
-    border-radius: 6px;
+    @apply bg-white relative rounded-md;
   }
 
   &__question {
-    padding: 20px;
-    text-align: start;
-    font-size: 18px;
-    font-weight: 700;
+    @apply p-5 text-start text-lg font-bold;
   }
 
   &__footer {
-    display: flex;
-    justify-content: right;
-    column-gap: 15px;
-    background-color: #8BC34A;
-    padding: 15px 20px 20px;
-    border-radius: 0 0 6px 6px;
+    @apply flex justify-end gap-x-4 bg-green px-5 pt-4 pb-5 rounded-b-md;
 
     .popup-button {
-      border-radius: 20px;
-      font-size: 16px;
-      padding: 7px 25px;
-      border: none;
+      @apply rounded-2xl border-none text-sm py-2 px-6;
 
       &:hover {
-        box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.37);
+        @apply shadow-light;
       }
       &--discard {
-        color: #fff;
-        background-color: #8BC34A;
+        @apply text-white bg-green;
       }
 
       &--delete {
-        display: flex;
-        align-items: center;
-        column-gap: 5px;
-        color: #E7344C;
-        box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.37);
+        @apply flex items-center gap-x-1 text-red shadow-light;
+
         &:hover {
-          box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.37);
+          @apply shadow-middle;
         }
 
         span {
-          font-size: 16px;
+          @apply text-base;
         }
       }
     }
   }
 
   .popup-order {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    column-gap: 15px;
-    padding: 0 20px;
-    margin-bottom: 10px;
-    align-items: center;
+    @apply flex flex-row justify-between gap-x-4 px-5 mb-2.5 items-center;
 
     &__count {
 
       &--description,
       &--count {
-        padding: 0;
-        margin: 0;
+        @apply p-0 m-0;
       }
 
       &--description {
-        color: #8BA0AA;
+        @apply text-gray;
       }
     }
 
     &__title {
-      max-width: 270px;
-      font-weight: 600;
+      @apply max-w-xs font-semibold;
     }
   }
 }

@@ -1,23 +1,38 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
     extend: {
       colors: {
-        'orange': '#F16801',
-        'pink': '#F8EAE0',
-        'ultra-light-gray': '#D1D1D1',
-        'light-gray': '#969696',
-        'gray': '#5D6165',
-        'dark-gray': '#363836',
-        'red': '#E63027',
-        'light-yellow': '#E6E4D7',
+        'light-gray': '#D1DADD',
+        'gray': '#878B8F',
+        'dark-gray': '#00000080',
+        'light-yellow': '#D2E051',
         'green': '#8BC34A',
-        'blue': '#158BA7',
-        'body': '#eff1f2'
-      }
+        'dark-green': '#2C3C44',
+        'yellow': '#D2E051',
+        'red': '#E7344C'
+      },
+      boxShadow: {
+        'light': '2px 2px 5px 0px rgba(0, 0, 0, 0.37)',
+        'middle': '2px 2px 5px 2px rgba(0, 0, 0, 0.37)',
+        'sidebar': '0px 18px 17px 2px rgba(0, 0, 0, 0.37)',
+        'header': '0px -5px 59px -10px rgba(0, 0, 0, 0.37)',
+        'filter': 'inset -3px 7px 18px -8px rgba(0, 0, 0, 0.2)',
+        'filter-hover': 'inset -6px 7px 33px -8px rgba(0, 0, 0, 0.2)'
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ addBase, theme }) {
+      addBase({
+        'h1': { fontSize: theme('fontSize.2xl') },
+        'h2': { fontSize: theme('fontSize.xl')},
+        'h3': { fontSize: theme('fontSize.lg') },
+      })
+    })
+  ],
 }
 

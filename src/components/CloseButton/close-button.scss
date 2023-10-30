@@ -1,46 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .close-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  position: absolute;
-  top: -20px;
-  right: -20px;
+  @apply flex justify-center items-center w-10 h-10 cursor-pointer absolute -top-5 -right-5;
 
   &__circle {
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    border-radius: 50%;
-    position: relative;
-    box-shadow: 5px 5px 14px 0px #0000005e;
+    @apply w-full h-full bg-white rounded-full relative  shadow-[5px_5px_14px_0px_#0000005e];
 
     &:hover {
-      box-shadow: 6px 6px 16px 0px #0000005e;
-      border: 1px solid #0000005e;
+      @apply shadow-[7px_7px_18px_0px_#0000005e] border border-solid border-light-gray;
     }
 
     span {
-      position: absolute;
-      width: 50%;
-      height: 2px;
-      background: #0000005e;
+      @apply absolute w-1/2 h-0.5 bg-gray pointer-events-none;
     }
     
     &--line-1 {
-      top: 50%;
-      left: 25%;
-      transform: rotate(45deg);
+      @apply top-1/2 left-1/4 rotate-45;
     }
     
     &--line-2 {
-      top: 50%;
-      left: 25%;
-      transform: rotate(-45deg);
+      @apply top-1/2 left-1/4 -rotate-45;
     }
   }
-
-  
 }

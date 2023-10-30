@@ -1,27 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .product {
   &__header {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    column-gap: 20px;
-    margin-bottom: 50px;
+    @apply flex flex-row items-baseline gap-x-5 mb-12 font-bold;
 
     label {
-      margin-right: 10px;
-      color: #8BA0AA;
+      @apply mr-2.5 text-gray;
     }
 
     select {
-      outline: 0;
-      border: 1px solid #8BA0AA;
-      padding: 4px;
-      border-radius: 8px;
-      font-weight: 600;
+      @apply outline-none border border-solid border-gray p-1 rounded-xl font-semibold;
     }
-  }
-
-  &__list {
-    list-style: none;
-    padding: 0;
   }
 }

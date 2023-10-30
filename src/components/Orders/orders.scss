@@ -1,19 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .orders {
 
-  &__header {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 50px;
-  }
+  &__header { 
+    @apply relative flex flex-row items-center mb-12 font-bold;
+   }
 
   &__body {
-    display: flex;
-    flex-direction: row;
+    @apply flex flex-row;
 
     &--products {
-      width: 64%;
+      @apply w-8/12;
     }
   }
 }

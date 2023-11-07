@@ -1,46 +1,49 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { createSelector } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux';
+import { productsFetching, productsFetched, activeFilterChanged, productsFetchingError} from '../../actions/actions';
 import ProductList from '../ProductLIst/ProductList';
 import useDataService from '../sevices/DataService';
 
 import './product.scss';
 
 const Product = () => {
-  const [typeOfProduct, setTypeOfProduct] = useState(null);
-  const [renderingData, setRenderingData] = useState([]);
-  const [dataProduct, setDataProduct] = useState([]);
+  const filteredProductSelector = createSelector(
+    (state) => state.productsReducer.activeFilter,
+    (state) => state.productsReducer.products,
+    (filter, products) => {
+      if(filter === 'all') {
+        return products;
+      } else {
+        return products.filter(item => item.type === filter)
+      }
+    }
+  )
 
-  const {fetchData} = useDataService();
+  const filteredProducts = useSelector(filteredProductSelector);
 
-  const getData = () => {
+  const { fetchData } = useDataService();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(productsFetching())
     fetchData('http://localhost:5000/products')
       .then(data => {
-        setDataProduct(data)
+        dispatch(productsFetched(data))
       })
       .catch(error => {
-        console.error('Error:', error);
+        dispatch(productsFetchingError());
       });
-  }
-  
-  useEffect(() => {
-    getData();
-  },[]);
+  },[])
 
-  useEffect(() => {
-      setRenderingData(dataProduct.filter(item => item.type === typeOfProduct ? item : null))
-  }, [ dataProduct ,typeOfProduct ]);
- 
-  const handleTypeOfProduct = (e) => {
-    setTypeOfProduct(e.target.value !== 'select' ? e.target.value : null)
-  }
- 
   return (
     <div className='product' data-testid="product-page">
       <div className='product__header'>
         <h1>Products / 25</h1>
         <form action="#">
           <label htmlFor="type">Type of products:</label>
-          <select name="types" id="type" onChange={handleTypeOfProduct}>
-            <option value="select">Select a type of products</option>
+          <select name="types" id="type" onChange={(e) => dispatch(activeFilterChanged(e.target.value))}>
+            <option value="all">Select a type of products</option>
             <option value="JavaScript asdfasd asdf">JavaScript asdfasd asdf</option>
             <option value="php">PHP</option>
             <option value="java">Java</option>
@@ -53,7 +56,7 @@ const Product = () => {
         </form>
 			</div>
       <div className='product__body'>
-        <ProductList data={typeOfProduct ? renderingData : dataProduct} />
+        <ProductList data={filteredProducts} />
 			</div>
     </div>
   )
